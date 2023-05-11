@@ -4,10 +4,156 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Movie API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
     <h1>Movie API</h1>
     <p>Find information about movies, directors, and genres. Create a profile to save information about your favorite movies.</p>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>End Point</th>
+          <th>Method</th>
+          <th>Parameters</th>
+          <th class="json">Request Example</th>
+          <th class="json">Response Example</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Adds new user to database.</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>N/A</td>
+        <td>A JSON object holding information about the new user to add.
+
+          {
+            "username" : "username123",
+            "email" : "myemail@gmail.com"
+          }
+        </td>
+        <td>A JSON object holding information about the added user.
+
+          {
+            "username" : "username123",
+            "email" : "myemail@gmail.com"
+          }
+        </td>
+      </tr>
+
+      <tr>
+        <td>Allows user to update their username.</td>
+        <td>/users/:id</td>
+        <td>PUT</td>
+        <td>id</td>
+        <td>A JSON object holding the new username.
+
+          {
+            "username" : "newUsername123"
+          }
+        </td>
+        <td>A JSON object holding the updated username.
+
+          {
+            "username" : "newUsername123"
+          }
+        </td>
+      </tr>
+
+      <tr>
+        <td>Allows users to add a movie to their favorites list.</td>
+        <td>/users/:id/:title</td>
+        <td>POST</td>
+        <td>id, title</td>
+        <td>N/A</td>
+        <td>A message reading: "(title) added to user (id) favorites."</td>
+      </tr>
+
+      <tr>
+        <td>Allows users to removeamoviefrom their list.</td>
+        <td>/users/:id/title</td>
+        <td>DELETE</td>
+        <td>id, title</td>
+        <td>N/A</td>
+        <td>A message reading: "(title) removed from user (id) favorites"</td>
+      </tr>
+
+      <tr>
+        <td>Removes the user from the database.</td>
+        <td>/users/:id</td>
+        <td>DELETE</td>
+        <td>id</td>
+        <td>N/A</td>
+        <td>A message reading: "User (id) has been deleted."</td>
+      </tr>
+
+      <tr>
+        <td>Allows users to search for a movie by its title.</td>
+        <td>/movies/:title</td>
+        <td>GET</td>
+        <td>title</td>
+        <td>N/A</td>
+        <td>A JSON object holding the information of the movie requested.
+
+          {
+            "title": "Forrest Gump",
+
+            "director": {
+                "name": "Robert Zemeckis",
+                "bio": "Bio of director",
+                "death": ""
+            },
+
+            "description": "Description of movie",
+
+            "genre": {
+                "name": "Drama",
+                "description": "Description of drama."
+            },
+
+            "imageURL": "link.jpg",
+            "featured": false
+          }
+        </td>
+      </tr>
+
+      <tr>
+        <td>Allows users to search for a genre.</td>
+        <td>/movies/genres/:genreName</td>
+        <td>GET</td>
+        <td>genreName</td>
+        <td>N/A</td>
+        <td>A JSON object holding information about the genre requested.
+
+          {
+            "name": "Drama",
+            "description": "Description of drama."
+          }
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Allows users to search for a director by name.</td>
+        <td>/movies/directors/:directorName</td>
+        <td>GET</td>
+        <td>directorName</td>
+        <td>N/A</td>
+        <td>
+          A JSON object holding the requested director's information.
+          
+          {
+            "name": "Christopher Nolan",
+            "bio": "Bio of director.",
+            "birth": "1970",
+            "death": ""
+          }
+        </td>
+      </tr>
+    </tbody>
+    </table>
   </body>
 </html>
