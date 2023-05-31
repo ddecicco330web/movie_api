@@ -41,8 +41,8 @@ require('./passport.js');
 
 app.use(express.static('public'));
 
-// mongoose.connect('mongodb://127.0.0.1:27017/myFlix', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/myFlix', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 /////////// Add User ////////////////
@@ -104,7 +104,19 @@ app.post('/users',
   (required)
   Birthday: Date
 }*/
-app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', {session: false}), 
+[
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not appear to be valid.').isEmail()
+],(req, res) => {
+    let errors = validationResult(req);
+
+    if(!errors.isEmpty()){
+        return res.status(422).json({ errors: errors.array()});
+    }
+
     Users.findOneAndUpdate({Username: req.params.Username},
         {$set: {
             Username: req.body.Username,
