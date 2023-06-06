@@ -20,13 +20,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 const cors = require('cors');
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+const allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
 app.use(cors({
     origin: (origin, callback) =>{
         if(!origin) return callback(null, true);
         if(allowedOrigins.indexOf(origin) === -1){
-            let message = `The CORS policy for this application doesn't allow access from origin ${origin}`;
+            const message = `The CORS policy for this application doesn't allow access from origin ${origin}`;
             return callback(new Error(message), false);
         }
         return callback(null, true);
@@ -67,7 +67,7 @@ app.post('/users',
         return res.status(422).json({ errors: errors.array()});
     }
 
-    let hashedPassword = Users.hashPassword(req.body.Password);
+    const hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne( { Username: req.body.Username } )
     .then((user) =>{
         if(user){
