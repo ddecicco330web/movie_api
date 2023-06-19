@@ -19,7 +19,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors');
 
-const allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+const allowedOrigins = [
+  'http://localhost:8080',
+  'http://testsite.com',
+  'http://localhost:1234'
+];
 
 app.use(
   cors({
@@ -30,7 +34,7 @@ app.use(
         return callback(new Error(message), false);
       }
       return callback(null, true);
-    },
+    }
   })
 );
 
@@ -44,7 +48,7 @@ app.use(express.static('public'));
 //mongoose.connect('mongodb://127.0.0.1:27017/myFlix', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
 
 /////////// Add User ////////////////
@@ -65,7 +69,7 @@ app.post(
       'Username contains non-alphanumeric characters - not allowed.'
     ).isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid.').isEmail(),
+    check('Email', 'Email does not appear to be valid.').isEmail()
   ],
   (req, res) => {
     let errors = validationResult(req);
@@ -84,7 +88,7 @@ app.post(
             Username: req.body.Username,
             Password: hashedPassword,
             Email: req.body.Email,
-            Birthday: req.body.Birthday,
+            Birthday: req.body.Birthday
           })
             .then((user) => {
               res.status(201).json(user);
@@ -123,7 +127,7 @@ app.put(
       'Username contains non-alphanumeric characters - not allowed.'
     ).isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid.').isEmail(),
+    check('Email', 'Email does not appear to be valid.').isEmail()
   ],
   (req, res) => {
     let errors = validationResult(req);
@@ -141,8 +145,8 @@ app.put(
           Username: req.body.Username,
           Password: hashedPassword,
           Email: req.body.Email,
-          Birthday: req.body.Birthday,
-        },
+          Birthday: req.body.Birthday
+        }
       },
       { new: true }
     )
@@ -217,20 +221,16 @@ app.delete(
 );
 
 //////// Get All Movies ////////////
-app.get(
-  '/movies',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Movies.find()
-      .then((movies) => {
-        return res.status(200).json(movies);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      });
-  }
-);
+app.get('/movies', (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      return res.status(200).json(movies);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 
 ////// Get Movie by Title //////////
 app.get(
@@ -249,16 +249,20 @@ app.get(
 );
 
 ////// Get Genre by Name//////////
-app.get('/movies/genres/:GenreName', (req, res) => {
-  Movies.findOne({ 'Genre.Name': req.params.GenreName })
-    .then((movie) => {
-      res.status(200).json(movie.Genre);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
+app.get(
+  '/movies/genres/:GenreName',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Movies.findOne({ 'Genre.Name': req.params.GenreName })
+      .then((movie) => {
+        res.status(200).json(movie.Genre);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+  }
+);
 
 //////// Get Director by Name /////////////
 app.get(
