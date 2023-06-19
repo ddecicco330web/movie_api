@@ -28,6 +28,8 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
+      console.log(allowedOrigins);
+      console.log(origin);
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         const message = `The CORS policy for this application doesn't allow access from origin ${origin}`;
