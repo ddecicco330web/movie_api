@@ -193,7 +193,7 @@ app.delete(
       { new: true }
     )
       .then((updatedUser) => {
-        res.json(updatedUser);
+        return res.json(updatedUser);
       })
       .catch((err) => {
         console.error(err);
