@@ -22,7 +22,8 @@ const cors = require('cors');
 const allowedOrigins = [
   'http://localhost:8080',
   'http://testsite.com',
-  'http://localhost:1234'
+  'http://localhost:1234',
+  'https://myflix330.netlify.app'
 ];
 
 app.use(
