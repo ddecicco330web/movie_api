@@ -287,22 +287,6 @@ app.get(
   }
 );
 
-///////// Get Users ///////////////
-app.get(
-  '/users',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Users.find()
-      .then((users) => {
-        res.status(200).json(users);
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
-      });
-  }
-);
-
 ///////// Get User by Name///////////////
 app.get(
   '/users/:Username',

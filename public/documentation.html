@@ -4,13 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Movie API Documentation</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <h1>Movie API</h1>
-    <p>Find information about movies, directors, and genres. Create a profile to save information about your favorite movies.</p>
-  
+    <p>
+      Find information about movies, directors, and genres. Create a profile to
+      save information about your favorite movies.
+    </p>
+
     <table>
       <thead>
         <tr>
@@ -21,255 +24,180 @@
           <th class="json">Request Example</th>
           <th class="json">Response Example</th>
         </tr>
-    </thead>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td>Shows all movies to the user.</td>
-        <td>/movies</td>
-        <td>Get</td>
-        <td>N/A</td>
-        <td>N/A
-        </td>
-        <td>A list of JSON objects holding information about the movies.
-          {
-            "Genre": {
-                "Name": "Thriller",
-                "Description": "Thriller film, also known as a suspense film or supspense thriller, is a broad film genre thatinvolves excitement and suspense in the audience."
-            },
-            "Director": [
-                {
-                    "Name": "Jonathan Demme",
-                    "Bio": "Jonathan Demme was born on February 22, 1944 in Baldwin, Long Island, New York, USA. He was a director and producer, known for The Silence of the Lambs (1991), Rachel Getting Married (2008) and Philadelphia (1993). He was previously married to Joanne Howard and Evelyn Purcell. He died on April 26, 2017 in Manhattan, New York City, New York, USA.",
-                    "BirthYear": "1944",
-                    "DeathYear": "2017"
-                }
-            ],
-            "Actors": [],
-            "_id": "6463c394b9650b5a67be441d",
-            "Title": "Silence of the Lambs",
-            "Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer.",
-            "ImagePath": "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/1d661187b253755ef32e1f21748ca1e217529bb72f8ef8a87a18fd8e904246a0._RI_TTW_.jpg",
-            "Featured": true,
-            "ReleaseYear": [
-                "1991"
-            ],
-            "Rating": [
-                8.6
-            ]
-        }
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>Shows all movies to the user.</td>
+          <td>/movies</td>
+          <td>Get</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>
+            A list of JSON objects holding information about the movies. {
+            "Genre": { "Name": "Thriller", "Description": "Thriller film, also
+            known as a suspense film or supspense thriller, is a broad film
+            genre thatinvolves excitement and suspense in the audience." },
+            "Director": [ { "Name": "Jonathan Demme", "Bio": "Jonathan Demme was
+            born on February 22, 1944 in Baldwin, Long Island, New York, USA. He
+            was a director and producer, known for The Silence of the Lambs
+            (1991), Rachel Getting Married (2008) and Philadelphia (1993). He
+            was previously married to Joanne Howard and Evelyn Purcell. He died
+            on April 26, 2017 in Manhattan, New York City, New York, USA.",
+            "BirthYear": "1944", "DeathYear": "2017" } ], "Actors": [], "_id":
+            "6463c394b9650b5a67be441d", "Title": "Silence of the Lambs",
+            "Description": "A young FBI cadet must receive the help of an
+            incarcerated and manipulative cannibal killer.", "ImagePath":
+            "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/1d661187b253755ef32e1f21748ca1e217529bb72f8ef8a87a18fd8e904246a0._RI_TTW_.jpg",
+            "Featured": true, "ReleaseYear": [ "1991" ], "Rating": [ 8.6 ] }
+          </td>
+        </tr>
 
-      <tr>
-        <td>Shows all users.</td>
-        <td>/users</td>
-        <td>Get</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>A JSON object showing the information of all of the users.
-          {
-            "_id": "64641865b39105895083c019",
-            "Username": "ddecicco3034",
-            "Password": "password2",
-            "Email": "ddecicco330@gmail.com",
-            "Birthday": "1995-03-30T00:00:00.000Z",
-            "FavoriteMovies": [
-                "6463c394b9650b5a67be441d",
-                "6463febab39105895083c018"
-            ]
-        }
-        </td>
-      </tr>
+        <tr>
+          <td>Shows a user by their username.</td>
+          <td>/users/:Username</td>
+          <td>Get</td>
+          <td>Username</td>
+          <td>N/A</td>
+          <td>
+            A JSON object showing the information of the requested user. {
+            "_id": "64641865b39105895083c019", "Username": "ddecicco3034",
+            "Password": "password2", "Email": "ddecicco330@gmail.com",
+            "Birthday": "1995-03-30T00:00:00.000Z", "FavoriteMovies": [
+            "6463c394b9650b5a67be441d", "6463febab39105895083c018" ] }
+          </td>
+        </tr>
 
-      <tr>
-        <td>Shows a user by their username.</td>
-        <td>/users/:Username</td>
-        <td>Get</td>
-        <td>Username</td>
-        <td>N/A</td>
-        <td>A JSON object showing the information of the requested user.
-          {
-            "_id": "64641865b39105895083c019",
-            "Username": "ddecicco3034",
-            "Password": "password2",
-            "Email": "ddecicco330@gmail.com",
-            "Birthday": "1995-03-30T00:00:00.000Z",
-            "FavoriteMovies": [
-                "6463c394b9650b5a67be441d",
-                "6463febab39105895083c018"
-            ]
-        }
-        </td>
-      </tr>
+        <tr>
+          <td>Adds new user to database.</td>
+          <td>/users</td>
+          <td>POST</td>
+          <td>N/A</td>
+          <td>
+            A JSON object holding information about the new user to add. {
+            "Username": "jhudson720", "Password": "password1", "Email":
+            "jhudson720@gmail.com" }
+          </td>
+          <td>
+            A JSON object holding information about the added user. {
+            "Username": "jhudson720", "Password": "password1", "Email":
+            "jhudson720@gmail.com", "FavoriteMovies": [], "_id":
+            "646bdee8177f73f6544faace", "__v": 0 }
+          </td>
+        </tr>
 
-      <tr>
-        <td>Adds new user to database.</td>
-        <td>/users</td>
-        <td>POST</td>
-        <td>N/A</td>
-        <td>A JSON object holding information about the new user to add.
+        <tr>
+          <td>Allows user to update their info.</td>
+          <td>/users/:Username</td>
+          <td>PUT</td>
+          <td>Username</td>
+          <td>
+            A JSON object holding the new user data. { "Username": "jhudson720",
+            "Password": "password1", "Email": "jhudson720@gmail.com" }
+          </td>
+          <td>
+            A JSON object holding the updated username. { "Username":
+            "jhudson720", "Password": "password1", "Email":
+            "jhudson720@gmail.com", "FavoriteMovies": [], "_id":
+            "646bdee8177f73f6544faace", "__v": 0 }
+          </td>
+        </tr>
 
-          {
-            "Username": "jhudson720",
-            "Password": "password1",
-            "Email": "jhudson720@gmail.com"
-        }
-        </td>
-        <td>A JSON object holding information about the added user.
+        <tr>
+          <td>Allows users to add a movie to their favorites list.</td>
+          <td>/users/:Username/movies/:MovieID</td>
+          <td>POST</td>
+          <td>Username, MovieID</td>
+          <td>N/A</td>
+          <td>
+            A JSON object showing the users information with the movie added to
+            the favorites list. { "_id": "64641865b39105895083c019", "Username":
+            "ddecicco3034", "Password": "password2", "Email":
+            "ddecicco330@gmail.com", "Birthday": "1995-03-30T00:00:00.000Z",
+            "FavoriteMovies": [ "6463c394b9650b5a67be441d",
+            "6463febab39105895083c018" ] }
+          </td>
+        </tr>
 
-          {
-            "Username": "jhudson720",
-            "Password": "password1",
-            "Email": "jhudson720@gmail.com",
-            "FavoriteMovies": [],
-            "_id": "646bdee8177f73f6544faace",
-            "__v": 0
-        }
-        </td>
-      </tr>
+        <tr>
+          <td>Allows users to remove a movie from their list.</td>
+          <td>/users/:Username/movies/:MovieID</td>
+          <td>DELETE</td>
+          <td>Username, MovieID</td>
+          <td>N/A</td>
+          <td>
+            A JSON object showing the users information with the movie removed
+            from the favorites list. { "_id": "64641865b39105895083c019",
+            "Username": "ddecicco3034", "Password": "password2", "Email":
+            "ddecicco330@gmail.com", "Birthday": "1995-03-30T00:00:00.000Z",
+            "FavoriteMovies": [ "6463c394b9650b5a67be441d" ] }
+          </td>
+        </tr>
 
-      <tr>
-        <td>Allows user to update their info.</td>
-        <td>/users/:Username</td>
-        <td>PUT</td>
-        <td>Username</td>
-        <td>A JSON object holding the new user data.
+        <tr>
+          <td>Removes the user from the database.</td>
+          <td>/users/:Username</td>
+          <td>DELETE</td>
+          <td>Username</td>
+          <td>N/A</td>
+          <td>A message reading: "(Username) was deleted."</td>
+        </tr>
 
-          {
-            "Username": "jhudson720",
-            "Password": "password1",
-            "Email": "jhudson720@gmail.com"
-        }
-        </td>
-        <td>A JSON object holding the updated username.
-
-          {
-            "Username": "jhudson720",
-            "Password": "password1",
-            "Email": "jhudson720@gmail.com",
-            "FavoriteMovies": [],
-            "_id": "646bdee8177f73f6544faace",
-            "__v": 0
-        }
-        </td>
-      </tr>
-
-      <tr>
-        <td>Allows users to add a movie to their favorites list.</td>
-        <td>/users/:Username/movies/:MovieID</td>
-        <td>POST</td>
-        <td>Username, MovieID</td>
-        <td>N/A</td>
-        <td>A JSON object showing the users information with the movie added to the favorites list.
-          {
-            "_id": "64641865b39105895083c019",
-            "Username": "ddecicco3034",
-            "Password": "password2",
-            "Email": "ddecicco330@gmail.com",
-            "Birthday": "1995-03-30T00:00:00.000Z",
-            "FavoriteMovies": [
-                "6463c394b9650b5a67be441d",
-                "6463febab39105895083c018"
-            ]
-        }
-        </td>
-      </tr>
-
-      <tr>
-        <td>Allows users to remove a movie from their list.</td>
-        <td>/users/:Username/movies/:MovieID</td>
-        <td>DELETE</td>
-        <td>Username, MovieID</td>
-        <td>N/A</td>
-        <td>A JSON object showing the users information with the movie removed from the favorites list.
-          {
-            "_id": "64641865b39105895083c019",
-            "Username": "ddecicco3034",
-            "Password": "password2",
-            "Email": "ddecicco330@gmail.com",
-            "Birthday": "1995-03-30T00:00:00.000Z",
-            "FavoriteMovies": [
-                "6463c394b9650b5a67be441d"
-            ]
-        }</td>
-      </tr>
-
-      <tr>
-        <td>Removes the user from the database.</td>
-        <td>/users/:Username</td>
-        <td>DELETE</td>
-        <td>Username</td>
-        <td>N/A</td>
-        <td>A message reading: "(Username) was deleted."</td>
-      </tr>
-
-      <tr>
-        <td>Allows users to search for a movie by its title.</td>
-        <td>/movies/:Title</td>
-        <td>GET</td>
-        <td>title</td>
-        <td>N/A</td>
-        <td>A JSON object holding the information of the movie requested.
-
-          {
-            "Genre": {
-                "Name": "Action",
-                "Description": "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats."
-            },
-            "Director": [
-                {
-                    "Name": "Christopher Nolan",
-                    "Bio": "Best known for his cerebral, often nonlinear, storytelling, acclaimed writer-director Christopher Nolan was born on July 30, 1970, in London, England.",
-                    "BirthYear": "1970"
-                }
-            ],
-            "Actors": [],
-            "_id": "6463febab39105895083c018",
-            "Title": "Inception",
-            "Description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-            "Featured": false,
-            "ReleaseYear": "2010",
-            "Rating": 8.8,
-            "ImagePath": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
-        }
-        </td>
-      </tr>
-
-      <tr>
-        <td>Allows users to search for a genre.</td>
-        <td>/movies/genres/:GenreName</td>
-        <td>GET</td>
-        <td>GenreName</td>
-        <td>N/A</td>
-        <td>A JSON object holding information about the genre requested.
-
-          {
-            "Name": "Drama",
-            "Description": "In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."
-        }
-        </td>
-      </tr>
-      
-      <tr>
-        <td>Allows users to search for a director by name.</td>
-        <td>/movies/directors/:DirectorName</td>
-        <td>GET</td>
-        <td>DirectorName</td>
-        <td>N/A</td>
-        <td>
-          A JSON object holding the requested director's information.
-          
-          [
-            {
-                "Name": "Christopher Nolan",
-                "Bio": "Best known for his cerebral, often nonlinear, storytelling, acclaimed writer-director Christopher Nolan was born on July 30, 1970, in London, England.",
-                "BirthYear": "1970"
+        <tr>
+          <td>Allows users to search for a movie by its title.</td>
+          <td>/movies/:Title</td>
+          <td>GET</td>
+          <td>title</td>
+          <td>N/A</td>
+          <td>
+            A JSON object holding the information of the movie requested. {
+            "Genre": { "Name": "Action", "Description": "Action film is a film
+            genre in which the protagonist is thrust into a series of events
+            that typically involve violence and physical feats." }, "Director":
+            [ { "Name": "Christopher Nolan", "Bio": "Best known for his
+            cerebral, often nonlinear, storytelling, acclaimed writer-director
+            Christopher Nolan was born on July 30, 1970, in London, England.",
+            "BirthYear": "1970" } ], "Actors": [], "_id":
+            "6463febab39105895083c018", "Title": "Inception", "Description": "A
+            thief who steals corporate secrets through the use of dream-sharing
+            technology is given the inverse task of planting an idea into the
+            mind of a C.E.O., but his tragic past may doom the project and his
+            team to disaster.", "Featured": false, "ReleaseYear": "2010",
+            "Rating": 8.8, "ImagePath":
+            "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg"
             }
-        ]
-        </td>
-      </tr>
-    </tbody>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Allows users to search for a genre.</td>
+          <td>/movies/genres/:GenreName</td>
+          <td>GET</td>
+          <td>GenreName</td>
+          <td>N/A</td>
+          <td>
+            A JSON object holding information about the genre requested. {
+            "Name": "Drama", "Description": "In film and television, drama is a
+            category or genre of narrative fiction (or semi-fiction) intended to
+            be more serious than humorous in tone." }
+          </td>
+        </tr>
+
+        <tr>
+          <td>Allows users to search for a director by name.</td>
+          <td>/movies/directors/:DirectorName</td>
+          <td>GET</td>
+          <td>DirectorName</td>
+          <td>N/A</td>
+          <td>
+            A JSON object holding the requested director's information. [ {
+            "Name": "Christopher Nolan", "Bio": "Best known for his cerebral,
+            often nonlinear, storytelling, acclaimed writer-director Christopher
+            Nolan was born on July 30, 1970, in London, England.", "BirthYear":
+            "1970" } ]
+          </td>
+        </tr>
+      </tbody>
     </table>
   </body>
 </html>
