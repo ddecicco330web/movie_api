@@ -23,7 +23,8 @@ const allowedOrigins = [
   'http://localhost:8080',
   'http://testsite.com',
   'http://localhost:1234',
-  'https://myflix330.netlify.app'
+  'https://myflix330.netlify.app',
+  'http://localhost:4200'
 ];
 
 app.use(
