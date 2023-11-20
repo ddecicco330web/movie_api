@@ -25,7 +25,7 @@ const allowedOrigins = [
   'http://localhost:1234',
   'https://myflix330.netlify.app',
   'http://localhost:4200',
-  'https://ddecicco330web.github.io/myFlix-Angular-client'
+  'https://ddecicco330web.github.io'
 ];
 
 app.use(
