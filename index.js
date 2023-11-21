@@ -610,7 +610,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/documentation', (req, res) => {
-  res.sendFile(__dirname + '/public/documentation.html');
+  res.sendFile(__dirname + '/out/index.html');
 });
 
 //////// Error Checking ////////////
